@@ -14,7 +14,7 @@ const SignInForm = () => {
                         id="email"
                         placeholder="you@example.com"
                         className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        defaultValue="you@example.com" 
+                        defaultValue="" 
                     />
                 </div>
             </div>
@@ -29,7 +29,7 @@ const SignInForm = () => {
                         id="password"
                         placeholder="********"
                         className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        defaultValue="********" 
+                        defaultValue="" 
                     />
                 </div>
             </div>
