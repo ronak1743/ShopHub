@@ -1,7 +1,7 @@
 package com.ronak.shophubbackend.Service;
 
-import com.ronak.shophub.Model.User;
-import com.ronak.shophub.Repo.UserRepo;
+import com.ronak.shophubbackend.Model.User;
+import com.ronak.shophubbackend.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

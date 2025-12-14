@@ -1,7 +1,7 @@
 package com.ronak.shophubbackend.Controller;
 
-import com.ronak.shophub.Model.User;
-import com.ronak.shophub.Service.UserService;
+import com.ronak.shophubbackend.Model.User;
+import com.ronak.shophubbackend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

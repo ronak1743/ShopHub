@@ -26,19 +26,18 @@ public class Order {
 
     private BigDecimal price;
 
-    // Define an Enum in Java to match your MySQL ENUM type
+
     public enum OrderStatus {
         PLACED, CONFIRMED, SHIPPED, DELIVERED, CANCELLED
     }
 
-    // Maps the status ENUM column
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.PLACED;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // Getters and Setters (omitted for brevity)
 
 
     public Long getId() {

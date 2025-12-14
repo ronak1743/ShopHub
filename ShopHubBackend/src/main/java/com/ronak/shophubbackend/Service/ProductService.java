@@ -1,6 +1,6 @@
 package com.ronak.shophubbackend.Service;
 
-import com.ronak.shophub.Repo.ProductRepo;
+import com.ronak.shophubbackend.Repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
