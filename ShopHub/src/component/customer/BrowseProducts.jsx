@@ -4,17 +4,7 @@ import EmptyState from "./EmptyState";
 function BrowseProducts({ products }) {
   return (
     <section className="mt-4">
-      <h1 className="text-3xl font-bold">Browse Products</h1>
-      <p className="text-gray-500 mt-1 mb-6">
-        Discover amazing products from our sellers
-      </p>
-
-      <input
-        type="text"
-        placeholder="Search products..."
-        className="w-full max-w-3xl mb-8 px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-
+      
       {products.length === 0 ? (
         <EmptyState />
       ) : (
