@@ -2,12 +2,12 @@ function ProductCard({ product }) {
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
       
-      {/* IMAGE */}
-      <div className="h-56 bg-gray-200 flex items-center justify-center">
-        <span className="text-gray-400">Product Image</span>
+
+      <div className="h-65 w-full bg-gray-100 flex items-center justify-center overflow-hidden rounded-t-2xl">
+        <img src={product.imgUrl} alt={product.name} className="h-full w-full object-contain"/>
       </div>
 
-      {/* CONTENT */}
+
       <div className="p-5">
         <h3 className="font-semibold text-lg mb-1 line-clamp-1">
           {product.name}
@@ -17,15 +17,15 @@ function ProductCard({ product }) {
           {product.description}
         </p>
 
-        {/* PRICE */}
+
         <div className="text-xl font-bold text-blue-600 mb-4">
           ₹{product.price}
         </div>
 
-        {/* BUTTONS */}
+
         <div className="flex gap-3">
           
-          {/* ADD TO CART */}
+
           <button className="
             flex-1
             border border-blue-600
@@ -42,7 +42,7 @@ function ProductCard({ product }) {
             Add to Cart
           </button>
 
-          {/* BUY NOW */}
+
           <button className="
             flex-1
             flex
@@ -58,7 +58,6 @@ function ProductCard({ product }) {
             hover:bg-orange-600
             transition
           ">
-            {/* <BoltIcon className="w-4 h-4" /> */}
             Buy Now
           </button>
         </div>
