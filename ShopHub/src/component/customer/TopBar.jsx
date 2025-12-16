@@ -6,8 +6,8 @@ function TopBar() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();        // 🔥 calls backend /logout
-    navigate("/login");    // 🔥 redirect
+    await logout();        
+    navigate("/login");    
   };
 
   return (
@@ -30,3 +30,4 @@ function TopBar() {
 }
 
 export default TopBar;
+
