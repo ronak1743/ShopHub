@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Mail, Lock, LogIn } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 
 const SignInForm = () => {
+    const { login } = useUser();
+
 
     const [data,setData]=useState({
         email:'',
         password:'',
     })
+    const navigator=useNavigate();
 
     const update=(e)=>{
         const { name, value } = e.target;
@@ -22,24 +27,40 @@ const SignInForm = () => {
         };
 
         try{
-            const response=await fetch('http://localhost:8888/login',{
-                method:'POST',
-                headers:{
-                    'Content-Type': 'application/json',
-                },
-                body:JSON.stringify(dataToSend)
-            })
+            const response = await fetch("http://localhost:8888/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include", // 🔴 REQUIRED
+                body: JSON.stringify(dataToSend),
+            });
+
             if (response==null) {
                 throw new Error('Network response was not ok');
             }
 
             const result = await response.json();
-            console.log('Success:', result);
+            // console.log("result: " ,result);
+            if(result['resp']){
+                console.log("ans",result);
+                login({
+                    name: result.name,
+                    role: result.role,
+                    email: result.email,
+                });
+                
+               
+               
+                
+            }
+            else{
+                console.log("some err ",result['msg']);
+            }
 
         }
         catch(err){
             console.log('Error:',err);
         }
+        window.location.reload();
     }
     return (
         <form onSubmit={handleSubmit}>

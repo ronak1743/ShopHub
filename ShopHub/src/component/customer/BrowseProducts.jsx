@@ -4,7 +4,6 @@ import EmptyState from "./EmptyState";
 function BrowseProducts({ products }) {
   return (
     <section className="mt-4">
-      
       {products.length === 0 ? (
         <EmptyState />
       ) : (

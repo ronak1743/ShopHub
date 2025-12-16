@@ -2,6 +2,7 @@ package com.ronak.shophubbackend.Controller;
 
 import com.ronak.shophubbackend.Model.User;
 import com.ronak.shophubbackend.Service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class UserController {
 
@@ -20,12 +20,19 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<Map<String,Object>> addUser(@RequestBody User user){
+    public ResponseEntity<Map<String,Object>> addUser(@RequestBody User user, HttpSession session){
         Map<String,Object>map = new HashMap<>();
         if(userService.addUser(user)){
             map.put("code",001);
             map.put("msg","User Created");
             map.put("resp",true);
+            map.put("name",user.getName());
+            map.put("email",user.getEmail());
+            map.put("role",user.getRole());
+
+            session.setAttribute("name",user.getName());
+            session.setAttribute("role",user.getRole());
+            session.setAttribute("email",user.getEmail());
 
         }
         else{
@@ -38,8 +45,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String,String>data){
-
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String,String>data,HttpSession session){
+        session.setMaxInactiveInterval(30 * 60);
         User user = userService.checkUser(data.get("email"));
         Map<String,Object>response=new HashMap<>();
         if(user!=null){
@@ -47,6 +54,13 @@ public class UserController {
                response.put("Code",100);
                response.put("msg","login");
                response.put("resp",true);
+               response.put("name",user.getName());
+               response.put("email",user.getEmail());
+               response.put("role",user.getRole());
+
+               session.setAttribute("name",user.getName());
+               session.setAttribute("role",user.getRole());
+               session.setAttribute("email",user.getEmail());
            }
            else{
                response.put("Code",101);
@@ -66,5 +80,25 @@ public class UserController {
     @GetMapping("/get")
     public List<User> getuser(){
         return  userService.getUser();
+    }
+
+    @GetMapping("/logout")
+    public void logout(HttpSession session) {
+        session.invalidate();
+    }
+
+
+    @GetMapping("/me")
+    public User me(HttpSession session){
+        session.setMaxInactiveInterval(30 * 60);
+        User user = null;
+        if(session.getAttribute("name")!=null){
+            user=new User();
+            user.setRole((User.UserRole) session.getAttribute("role"));
+            user.setName((String)session.getAttribute("name"));
+            user.setEmail((String)session.getAttribute("email"));
+        }
+        System.out.println(user);
+        return user;
     }
 }

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { User as UserIcon, Mail, Lock } from 'lucide-react';
+import { User as UserIcon, Mail, Lock, ImageOff } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+import { useUser } from '../context/UserContext';
 
 const SignUpForm = () => {
     const [data,setData]=useState({
@@ -8,6 +10,9 @@ const SignUpForm = () => {
         password:'',
         role:'CUSTOMER'
     });
+
+    const { login } = useUser();
+    const navigate=useNavigate();
 
     const onChanging=(e)=>{
         const { name, value } = e.target;
@@ -24,25 +29,29 @@ const SignUpForm = () => {
         };
 
         try{
-            const response=await fetch('http://localhost:8888/add',{
-                method:'POST',
-                headers:{
-                    'Content-Type': 'application/json',
-                },
-                body:JSON.stringify(dataToSend)
-            })
+            const response = await fetch("http://localhost:8888/add", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include", 
+                body: JSON.stringify(dataToSend),
+            });
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
 
             const result = await response.json();
             if(result['resp']){
-                console.log("Hello");
+                console.log("User Created");
+                login({
+                    name: result.name,
+                    role: result.role,
+                });
+               
             }
             else{
-                console.log("Hi");
+                console.log("username is already taken");
             }
-
+            window.location.reload();
         }
         catch(err){
             console.log('Error:',err);

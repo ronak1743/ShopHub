@@ -1,20 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ShopHubAuthPage from './component/ShopHubAuthPage'
-import { Sidebar } from 'lucide-react'
-import CustomerPage from './component/customer/CustomerPage'
+import { Navigate, Outlet } from "react-router-dom";
+import { useUser } from "./context/UserContext";
 
 function App() {
+  const { user, loading } = useUser();
 
-  return (
-    <>
-      <CustomerPage/>
+  if (loading) return <div>Loading...</div>;
 
-      {/* <Sidebar/> */}
-    </>
-  )
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <Outlet />;
 }
 
-export default App
+export default App;
