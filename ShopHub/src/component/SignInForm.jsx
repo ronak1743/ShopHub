@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Mail, Lock, LogIn } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 
 const SignInForm = () => {
@@ -11,7 +10,6 @@ const SignInForm = () => {
         email:'',
         password:'',
     })
-    const navigator=useNavigate();
 
     const update=(e)=>{
         const { name, value } = e.target;
@@ -30,7 +28,7 @@ const SignInForm = () => {
             const response = await fetch("http://localhost:8888/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                credentials: "include", // 🔴 REQUIRED
+                credentials: "include", 
                 body: JSON.stringify(dataToSend),
             });
 
@@ -39,7 +37,7 @@ const SignInForm = () => {
             }
 
             const result = await response.json();
-            // console.log("result: " ,result);
+
             if(result['resp']){
                 console.log("ans",result);
                 login({
@@ -47,10 +45,7 @@ const SignInForm = () => {
                     role: result.role,
                     email: result.email,
                 });
-                
                
-               
-                
             }
             else{
                 console.log("some err ",result['msg']);
@@ -113,6 +108,7 @@ const SignInForm = () => {
         </form>
     );
 };
+
 
 
 

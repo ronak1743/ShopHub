@@ -6,7 +6,7 @@ import BrowseHeader from "./BrowseHeader";
 import BrowseProducts from "./BrowseProducts";
 
 function CustomerPage() {
-  const { user } = useUser(); // ✅ REAL USER FROM SESSION
+  const { user } = useUser();
 
   const [product, setproduct] = useState([]);
   const [allproduct, setallproduct] = useState([]);
@@ -26,7 +26,7 @@ function CustomerPage() {
 
       <main className="flex-1 h-screen flex flex-col bg-slate-100">
         <div className="sticky top-0 z-30 bg-slate-100 px-6 pt-6">
-          <TopBar user={user} /> {/* 🔥 REAL USER */}
+          <TopBar user={user} />
         </div>
 
         <div className="sticky top-[72px] z-20 bg-slate-100 px-6 pb-4">
@@ -42,3 +42,4 @@ function CustomerPage() {
 }
 
 export default CustomerPage;
+
