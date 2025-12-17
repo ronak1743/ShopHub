@@ -3,7 +3,6 @@ import { Trash2, Minus, Plus } from "lucide-react";
 const CartItem = ({ item, onIncrement, onDecrement, onRemove }) => {
   return (
     <div className="flex items-center justify-between bg-white p-4 rounded shadow">
-      {/* Product Info */}
       <div className="flex items-center gap-4">
         <img src={item.img} alt={item.name} className="w-20 h-20 object-cover rounded" />
         <div>
@@ -12,8 +11,8 @@ const CartItem = ({ item, onIncrement, onDecrement, onRemove }) => {
         </div>
       </div>
 
-      {/* Buttons Column */}
-      <div className="flex flex-col items-center gap-2 left-30%">
+
+      <div className="flex flex-col items-center gap-2">
         <div className="flex items-center gap-2">
           <button onClick={() => onDecrement(item.id)} className="p-1 border rounded"><Minus size={16} /></button>
           <span>{item.quantity}</span>
@@ -22,7 +21,6 @@ const CartItem = ({ item, onIncrement, onDecrement, onRemove }) => {
         <button onClick={() => onRemove(item.id)} className="text-red-500"><Trash2 size={18} /></button>
       </div>
 
-      {/* Total Price */}
       <p className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
     </div>
   );

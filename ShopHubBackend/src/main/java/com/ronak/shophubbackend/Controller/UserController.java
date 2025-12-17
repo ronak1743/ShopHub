@@ -61,6 +61,7 @@ public class UserController {
                session.setAttribute("name",user.getName());
                session.setAttribute("role",user.getRole());
                session.setAttribute("email",user.getEmail());
+               session.setAttribute("id",user.getId());
            }
            else{
                response.put("Code",101);
@@ -97,6 +98,7 @@ public class UserController {
             user.setRole((User.UserRole) session.getAttribute("role"));
             user.setName((String)session.getAttribute("name"));
             user.setEmail((String)session.getAttribute("email"));
+            user.setId((Long) session.getAttribute("id"));
         }
         System.out.println(user);
         return user;
