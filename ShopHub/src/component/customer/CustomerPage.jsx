@@ -29,6 +29,7 @@ function CustomerPage() {
       <main className="flex-1 h-screen flex flex-col bg-slate-100">
         <div className="sticky top-0 z-30 bg-slate-100 px-6 pt-6">
           <TopBar user={user} />
+
         </div>
 
         {activePage === "Products" && (
