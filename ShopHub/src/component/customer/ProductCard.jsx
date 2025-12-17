@@ -1,10 +1,37 @@
+import { useState } from "react";
+
 function ProductCard({ product }) {
+  const [quantity, setQuantity] = useState(1);
+  const addToCart = async () => {
+    
+    try {
+      const response = await fetch("http://localhost:8888/addtocart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", 
+        
+        body: JSON.stringify({ 
+          id: product.id, 
+          qty: quantity 
+        }), 
+      });
+
+      if (response.ok) {
+        alert("Product added to cart!");
+      } else {
+        const errorMsg = await response.text();
+        alert("Error: " + errorMsg);
+      }
+    } catch (error) {
+      console.error("Connection error:", error);
+    }
+  };
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
       
 
       <div className="h-65 w-full bg-gray-100 flex items-center justify-center overflow-hidden rounded-t-2xl">
-        <img src={product.imgUrl} alt={product.name} className="h-full w-full object-contain"/>
+        <img src={product.imgUrl} alt={product.name} className="h-full w-full object-contain bg-white"/>
       </div>
 
 
@@ -38,7 +65,7 @@ function ProductCard({ product }) {
             transition
             hover:bg-blue-600
             hover:text-white
-          ">
+          " onClick={addToCart}>
             Add to Cart
           </button>
 
