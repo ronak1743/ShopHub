@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import BrowseHeader from "./BrowseHeader";
 import BrowseProducts from "./BrowseProducts";
 import CartPage from "./cart/CartPage";
+import OrdersPage from "./order/OrdersPage";
 
 function CustomerPage() {
   const { user } = useUser();
@@ -41,6 +42,7 @@ function CustomerPage() {
         <div className="flex-1 overflow-y-auto px-6 pb-6">
           {activePage === "Products" && <BrowseProducts products={product} />}
           {activePage === "Cart" &&  <CartPage/>}
+          {activePage === "My Orders" && <OrdersPage/>}
         </div>
       </main>
     </div>
