@@ -13,7 +13,17 @@ function CustomerPage() {
   const [product, setproduct] = useState([]);
   const [allproduct, setallproduct] = useState([]);
   const [activePage, setActivePage] = useState("Products");
+  const [Orders, setOrders] = useState([]);
 
+  const loardOrders = async () => {
+    await fetch("http://localhost:8888/getorders", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then(res => {console.log(res); return res})
+      .then((data) => setOrders(data));
+  }
+  
   useEffect(() => {
     fetch("http://localhost:8888/getproducts")
       .then(res => res.json())
@@ -21,8 +31,14 @@ function CustomerPage() {
         setproduct(data);
         setallproduct(data);
       });
+    loardOrders();
   }, []);
 
+  useEffect(() => {
+  if (activePage === "My Orders") {
+    loardOrders();
+  }
+}, [activePage]);
   return (
     <div className="flex h-screen bg-slate-100 overflow-hidden">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
@@ -40,9 +56,9 @@ function CustomerPage() {
         )}
 
         <div className="flex-1 overflow-y-auto px-6 pb-6">
-          {activePage === "Products" && <BrowseProducts products={product} />}
+          {activePage === "Products" && <BrowseProducts products={product}/>}
           {activePage === "Cart" &&  <CartPage/>}
-          {activePage === "My Orders" && <OrdersPage/>}
+          {activePage === "My Orders" && <OrdersPage Orders={Orders} />}
         </div>
       </main>
     </div>

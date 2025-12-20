@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { use, useEffect } from 'react';
+import { useState } from 'react';
 import OrderCard from './OrderCard';
 
 const demoOrders = [
@@ -32,14 +33,19 @@ image: "https://via.placeholder.com/80/2F4F4F/FFFFFF?text=🔋",
 ];
 
 
-function OrderList() {
+function OrderList({Orders}) {
+    
 return (
-<div className="space-y-4">
-{demoOrders.map((order) => (
-<OrderCard key={order.id} order={order} />
-))}
-</div>
-);
+    <div className="space-y-4">
+      {Orders.length === 0 ? (
+        <p className="text-gray-500">No orders found</p>
+      ) : (
+        Orders.map((order) => (
+          <OrderCard key={order.id} order={order} />
+        ))
+      )}
+    </div>
+  );
 }
 
 

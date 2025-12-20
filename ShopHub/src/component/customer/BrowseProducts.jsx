@@ -1,7 +1,7 @@
 import ProductCard from "./ProductCard";
 import EmptyState from "./EmptyState";
 
-function BrowseProducts({ products }) {
+function BrowseProducts({ products ,loardOrders}) {
   return (
     <section className="mt-4">
       {products.length === 0 ? (
@@ -9,7 +9,7 @@ function BrowseProducts({ products }) {
       ) : (
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
           {products.map((p) => (
-            <ProductCard key={p.id} product={p} />
+            <ProductCard key={p.id} product={p} loardOrders={loardOrders} />
           ))}
         </div>
       )}

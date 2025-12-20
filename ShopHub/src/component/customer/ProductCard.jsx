@@ -1,7 +1,17 @@
 import { useState } from "react";
 
-function ProductCard({ product }) {
+function ProductCard({ product}) {
   const [quantity, setQuantity] = useState(1);
+  
+  const addOrder=async()=>{
+      await fetch("http://localhost:8888/addorder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ pid:product.id }),
+      });
+     
+    }
   const addToCart = async () => {
     
     try {
@@ -84,7 +94,7 @@ function ProductCard({ product }) {
             font-medium
             hover:bg-orange-600
             transition
-          ">
+          " onClick={()=>addOrder()}>
             Buy Now
           </button>
         </div>
