@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../customer/Sidebar";
 import SellerSidebar from "./SellerSidebar";
 import TopBar from "../customer/TopBar";
@@ -6,6 +6,29 @@ import TopBar from "../customer/TopBar";
 function SellerDashboard(){
     const [activePage,setActivePage]=useState("Dashboard");
     const {user}=useState();
+    const [dash,setDash]=useState({
+      income:0,
+      pending:0,
+      totalOrder:0,
+      products:0,
+    });
+
+    useEffect(()=>{
+
+      const fetchData = async () => {
+    try {
+      const res = await fetch("http://localhost:8888/seller/dash", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setDash(data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+    }
+  };
+  fetchData();
+    },[]);
+
     return(
         <>
         <div className="flex h-screen bg-slate-100 overflow-hidden">
@@ -27,15 +50,15 @@ function SellerDashboard(){
         </p>
       </div>
 
-      {/* Stats Grid */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
 
-        {/* Total Products */}
+
         <div className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <p className="text-gray-500 text-sm">Total Products</p>
 
-            {/* Blue cube icon */}
+
             <div className="p-2 rounded-full bg-blue-100 text-blue-600">
               <svg xmlns="http://www.w3.org/2000/svg"
                    className="w-6 h-6"
@@ -49,15 +72,15 @@ function SellerDashboard(){
               </svg>
             </div>
           </div>
-          <h3 className="text-3xl font-semibold mt-4">6</h3>
+          <h3 className="text-3xl font-semibold mt-4">{dash.products}</h3>
         </div>
 
-        {/* Total Orders */}
+
         <div className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <p className="text-gray-500 text-sm">Total Orders</p>
 
-            {/* Yellow cart icon */}
+
             <div className="p-2 rounded-full bg-yellow-100 text-yellow-600">
               <svg xmlns="http://www.w3.org/2000/svg"
                    className="w-6 h-6"
@@ -71,15 +94,15 @@ function SellerDashboard(){
               </svg>
             </div>
           </div>
-          <h3 className="text-3xl font-semibold mt-4">3</h3>
+          <h3 className="text-3xl font-semibold mt-4">{dash.totalOrder}</h3>
         </div>
 
-        {/* Total Revenue */}
+
         <div className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <p className="text-gray-500 text-sm">Total Revenue</p>
 
-            {/* Green dollar icon */}
+
             <div className="p-2 rounded-full bg-green-100 text-green-600">
               <svg xmlns="http://www.w3.org/2000/svg"
                    className="w-6 h-6"
@@ -93,15 +116,13 @@ function SellerDashboard(){
               </svg>
             </div>
           </div>
-          <h3 className="text-3xl font-semibold mt-4">$749.94</h3>
+          <h3 className="text-3xl font-semibold mt-4">$ {dash.income}</h3>
         </div>
 
-        {/* Pending Orders */}
         <div className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <p className="text-gray-500 text-sm">Pending Orders</p>
 
-            {/* Orange trending icon */}
             <div className="p-2 rounded-full bg-orange-100 text-orange-600">
               <svg xmlns="http://www.w3.org/2000/svg"
                    className="w-6 h-6"
@@ -115,7 +136,7 @@ function SellerDashboard(){
               </svg>
             </div>
           </div>
-          <h3 className="text-3xl font-semibold mt-4">1</h3>
+          <h3 className="text-3xl font-semibold mt-4">{dash.pending}</h3>
         </div>
 
       </div>
