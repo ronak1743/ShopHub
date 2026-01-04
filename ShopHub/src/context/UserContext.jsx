@@ -50,6 +50,7 @@ const logout = async () => {
         loading,
         logout,
         refreshUser: fetchMe,
+        login:(data)=>setUser(data)
       }}
     >
       {children}

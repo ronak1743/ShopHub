@@ -1,5 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useUser } from "./context/UserContext";
+import SellerDashboard from "./component/seller/SellerDashboard";
+import CustomerPage from "./component/customer/CustomerPage";
 
 function App() {
   const { user, loading } = useUser();
@@ -10,7 +12,11 @@ function App() {
     return <Navigate to="/login" replace />;
   }
 
-  return <Outlet />;
+   if (user.role === "CUSTOMER") {
+    return <CustomerPage/>;
+  }
+  
+  return <SellerDashboard />;
 }
 
 export default App;
