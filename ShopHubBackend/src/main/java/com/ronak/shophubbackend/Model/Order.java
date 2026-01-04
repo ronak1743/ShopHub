@@ -28,12 +28,12 @@ public class Order {
 
 
     public enum OrderStatus {
-        PLACED, CONFIRMED, SHIPPED, DELIVERED, CANCELLED
+        PENDING,PLACED, CONFIRMED, SHIPPED, DELIVERED, CANCELLED
     }
 
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status = OrderStatus.PLACED;
+    private OrderStatus status = OrderStatus.PENDING;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
