@@ -55,7 +55,6 @@ const SignInForm = () => {
         catch(err){
             console.log('Error:',err);
         }
-        window.location.reload();
     }
     return (
         <form onSubmit={handleSubmit}>

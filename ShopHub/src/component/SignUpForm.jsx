@@ -51,7 +51,7 @@ const SignUpForm = () => {
             else{
                 console.log("username is already taken");
             }
-            window.location.reload();
+            
         }
         catch(err){
             console.log('Error:',err);
