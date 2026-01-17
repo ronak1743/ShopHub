@@ -13,12 +13,16 @@ function Dashboard() {
 
       const fetchData = async () => {
         try {
+
           const res = await fetch("http://localhost:8888/seller/dash", {
             credentials: "include",
           });
           const data = await res.json();
           setDash(data);
-        } catch (err) {
+
+        } 
+        catch (err) {
+
           console.error("Fetch error:", err);
         }
       };

@@ -69,7 +69,6 @@ const AddProduct = () => {
 
         <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
           
-          {/* NAME */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
               Product Name

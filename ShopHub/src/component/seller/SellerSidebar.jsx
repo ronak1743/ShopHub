@@ -4,33 +4,33 @@ import React from "react";
 function SellerSidebar({activePage,setActivePage}){
     return(
 
-<aside className="w-65 bg-white border-r p-4">
-  <h2 className="text-2xl font-bold mb-8">ShopHub</h2>
+      <aside className="w-65 bg-white border-r p-4">
+        <h2 className="text-2xl font-bold mb-8">ShopHub</h2>
 
-      <nav className="space-y-2">
-         <MenuItem label="Dashboard" 
-         active={activePage === "Dashboard"}
-          onClick={() => setActivePage("Dashboard")} />
-        
-        <MenuItem label="MyProducts" 
-         active={activePage === "MyProducts"}
-          onClick={() => setActivePage("MyProducts")} />
-          
-        <MenuItem label="Add Product" 
-          active={activePage === "Add Product"}
-          onClick={() => setActivePage("Add Product")}/>
+          <nav className="space-y-2">
+             <MenuItem label="Dashboard" 
+             active={activePage === "Dashboard"}
+              onClick={() => setActivePage("Dashboard")} />
 
-        <MenuItem label="Orders" 
-          active={activePage === "Orders"}
-          onClick={() => setActivePage("Orders")}
+            <MenuItem label="MyProducts" 
+             active={activePage === "MyProducts"}
+              onClick={() => setActivePage("MyProducts")} />
 
-        />
-        <MenuItem label="Notifications" 
-          active={activePage === "Notifications"}
-          onClick={() => setActivePage("Notifications")}
+            <MenuItem label="Add Product" 
+              active={activePage === "Add Product"}
+              onClick={() => setActivePage("Add Product")}/>
 
-        />
-      </nav>
+            <MenuItem label="Orders" 
+              active={activePage === "Orders"}
+              onClick={() => setActivePage("Orders")}
+
+            />
+            <MenuItem label="Notifications" 
+              active={activePage === "Notifications"}
+              onClick={() => setActivePage("Notifications")}
+
+            />
+          </nav>
     </aside>
     )
 }
