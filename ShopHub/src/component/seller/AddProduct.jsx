@@ -31,7 +31,7 @@ const AddProduct = () => {
     );
 
     try {
-      const res = await fetch("http://localhost:8888/addproduct", {
+      const res = await fetch("https://shophub-production-82e2.up.railway.app/addproduct", {
         method: "POST",
         body: formData,
         credentials: "include",

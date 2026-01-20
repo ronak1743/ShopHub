@@ -25,7 +25,7 @@ const SignInForm = () => {
         };
 
         try{
-            const response = await fetch("http://localhost:8888/login", {
+            const response = await fetch("https://shophub-production-82e2.up.railway.app/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include", 

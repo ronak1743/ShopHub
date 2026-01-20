@@ -3,10 +3,13 @@ import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 
 const CartPage = () => {
+  // MOVED: useState must be at the top level of the component, not inside fetchCart
+  const [cartItems, setCartItems] = useState([]);
 
   const fetchCart=async ()=>{
+    // REMOVED: Initial state declaration from here
     const x=[];
-    await fetch("http://localhost:8888/getCart",{
+    await fetch("https://shophub-production-82e2.up.railway.app/getCart",{
       credentials: "include",
     })
     .then((res)=>res.json())
@@ -27,13 +30,9 @@ const CartPage = () => {
   }
 
   useEffect(()=>{fetchCart()},[]);
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Wireless Bluetooth Headphones", price: 149.99, quantity: 2, img: "https://via.placeholder.com/80" },
-    { id: 2, name: "Portable Power Bank", price: 49.99, quantity: 1, img: "https://via.placeholder.com/80" },
-  ]);
-
+ 
   const updateItem=async(id,qty)=>{
-    await fetch("http://localhost:8888/updatecart", {
+    await fetch("https://shophub-production-82e2.up.railway.app/updatecart", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -43,7 +42,7 @@ const CartPage = () => {
   }
 
   const deleteItem = async (id) => {
-    await fetch(`http://localhost:8888/deletecart/${id}`, {
+    await fetch(`https://shophub-production-82e2.up.railway.app/deletecart/${id}`, {
       method: "DELETE",
       credentials: "include",
     });
@@ -74,7 +73,6 @@ const CartPage = () => {
 
   return (
     <>
-     
         <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
         <p className="mb-6">{cartItems.length} items in your cart</p>
 

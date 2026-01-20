@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
 
   const fetchMe = async () => {
     try {
-      const res = await fetch("http://localhost:8888/me", {
+      const res = await fetch("https://shophub-production-82e2.up.railway.app/me", {
         credentials: "include",
       });
 
@@ -32,7 +32,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
 const logout = async () => {
-  await fetch("http://localhost:8888/logout", {
+  await fetch("https://shophub-production-82e2.up.railway.app/logout", {
     method: "GET",
     credentials: "include",
   })

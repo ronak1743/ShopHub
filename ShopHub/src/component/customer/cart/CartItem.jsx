@@ -7,7 +7,7 @@ const CartItem = ({ item, onIncrement, onDecrement, onRemove }) => {
         <img src={item.img} alt={item.name} className="w-20 h-20 object-cover rounded" />
         <div>
           <p className="font-semibold">{item.name}</p>
-          <p className="text-blue-600 font-bold">${item.price.toFixed(2)}</p>
+          <p className="text-blue-600 font-bold">${item.price.toLocaleString()}</p>
         </div>
       </div>
 
@@ -21,7 +21,7 @@ const CartItem = ({ item, onIncrement, onDecrement, onRemove }) => {
         <button onClick={() => onRemove(item.id)} className="text-red-500"><Trash2 size={18} /></button>
       </div>
 
-      <p className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+      <p className="font-bold">${(item.price * item.quantity).toLocaleString()}</p>
     </div>
   );
 };

@@ -29,7 +29,7 @@ const SignUpForm = () => {
         };
 
         try{
-            const response = await fetch("http://localhost:8888/add", {
+            const response = await fetch("https://shophub-production-82e2.up.railway.app/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include", 

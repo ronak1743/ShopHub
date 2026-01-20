@@ -1,8 +1,10 @@
 import React from "react";
 
 function ProductCard({ product, setChange, change }) {
+
   const deleteproduct = async (id) => {
-    await fetch(`http://localhost:8888/delete/product/${id}`, {
+
+    await fetch(`https://shophub-production-82e2.up.railway.app/delete/product/${id}`, {
       method: "DELETE",
       credentials: "include",
     });
@@ -28,6 +30,7 @@ function ProductCard({ product, setChange, change }) {
           <span className="text-lg font-bold text-indigo-600">
             ₹{product.price}
           </span>
+          
           <span className="text-sm text-gray-500">
             Stock: {product.stock}
           </span>

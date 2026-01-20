@@ -16,16 +16,15 @@ function CustomerPage() {
   const [Orders, setOrders] = useState([]);
 
   const loardOrders = async () => {
-    await fetch("http://localhost:8888/getorders", {
+    await fetch("https://shophub-production-82e2.up.railway.app/getorders", {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then(res => {console.log(res); return res})
       .then((data) => setOrders(data));
   }
   
   useEffect(() => {
-    fetch("http://localhost:8888/getproducts")
+    fetch("https://shophub-production-82e2.up.railway.app/getproducts")
       .then(res => res.json())
       .then(data => {
         setproduct(data);

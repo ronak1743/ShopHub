@@ -4,7 +4,7 @@ function ProductCard({ product}) {
   const [quantity, setQuantity] = useState(1);
   
   const addOrder=async()=>{
-      await fetch("http://localhost:8888/addorder", {
+      await fetch("https://shophub-production-82e2.up.railway.app/addorder", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -15,7 +15,7 @@ function ProductCard({ product}) {
   const addToCart = async () => {
     
     try {
-      const response = await fetch("http://localhost:8888/addtocart", {
+      const response = await fetch("https://shophub-production-82e2.up.railway.app/addtocart", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include", 
