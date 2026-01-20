@@ -4,6 +4,7 @@ import SellerSidebar from "./SellerSidebar";
 import TopBar from "../customer/TopBar";
 import Dashboard from "./Dashboard";
 import AddProduct from "./AddProduct";
+import MyProducts from "./MyProducts";
 
 function SellerDashboard(){
     const [activePage,setActivePage]=useState("Dashboard");
@@ -15,7 +16,7 @@ function SellerDashboard(){
         <div className="flex h-screen bg-slate-100 overflow-hidden">
           <SellerSidebar activePage={activePage} setActivePage={setActivePage} />
 
-          <main className="flex-1 h-screen flex flex-col bg-slate-100">
+          <main className="flex-1 flex flex-col bg-slate-100 overflow-hidden">
             <div className="sticky top-0 z-30 bg-slate-100 px-6 pt-6">
               <TopBar user={user} />
 
@@ -23,7 +24,7 @@ function SellerDashboard(){
 
             {activePage==="Dashboard" && <Dashboard/>}
             {activePage==="Add Product" && <AddProduct/>}
-            {activePage==="MyProducts" && <div>MyProducts</div>}
+            {activePage==="MyProducts" && <MyProducts setActivePage={setActivePage}/>}
             {activePage==="Orders" && <div>Orders</div>}
             {activePage==="Notifications" && <div>Notifications</div>}
 

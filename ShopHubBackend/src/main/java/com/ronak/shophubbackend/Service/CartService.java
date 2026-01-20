@@ -45,17 +45,19 @@ public class CartService {
         List<CartItem> list =new ArrayList<>();
         List<Cart>ans=cartRepo.findByCustomerId(id);
         for(Cart item:ans){
+
             Product product = productRepo.findProductById(item.getProductId());
             CartItem cartItem = new CartItem();
-
             cartItem.setId(item.getId());
-            cartItem.setName(product.getName());
-            cartItem.setPrice(product.getPrice());
-            cartItem.setImgUrl(product.getImgUrl());
-            cartItem.setQuantity(item.getQuantity());
 
-            list.add(cartItem);
+            if(product!=null) {
 
+                cartItem.setName(product.getName());
+                cartItem.setPrice(product.getPrice());
+                cartItem.setImgUrl(product.getImgUrl());
+                cartItem.setQuantity(item.getQuantity());
+                list.add(cartItem);
+            }
         }
         Collections.reverse(list);
         return list;

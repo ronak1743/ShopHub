@@ -6,6 +6,7 @@ import com.ronak.shophubbackend.Model.Product;
 import com.ronak.shophubbackend.Service.ProductService;
 import com.ronak.shophubbackend.configrations.CloudinaryConfig;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,19 +43,24 @@ public class ProductController {
 
         Map upload = cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap());
         String imageUrl = (String) upload.get("secure_url");
+        Long id=Long.parseLong(session.getAttribute("id").toString());
 
-        Product product = new Product();
-        product.setName(name);
-        product.setPrice(price);
-        product.setStock(Integer.parseInt(stock));
-        product.setImgUrl(imageUrl);
-        product.setDescription(desc);
-        product.setActive(true);
-        product.setSellerId(Long.parseLong(session.getAttribute("id").toString()));
-        productService.createProduct(product);
+        productService.addProduct(name,price,stock,desc,imageUrl,id);
 
         return ResponseEntity.ok(imageUrl);
     }
 
 
+    @GetMapping("/myproduct")
+    public List<Product> getProductBySeller(HttpSession session){
+        Long id=Long.parseLong(session.getAttribute("id").toString());
+        return productService.getProductBySeller(id);
+    }
+
+    @DeleteMapping("/delete/product/{id}")
+    public void deleteProduct(@PathVariable Long id, HttpSession session){
+        Long sellerid=Long.parseLong(session.getAttribute("id").toString());
+        productService.deleteProduct(sellerid,id);
+
+    }
 }

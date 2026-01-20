@@ -32,7 +32,7 @@ function CustomerPage() {
         setallproduct(data);
       });
     loardOrders();
-  }, []);
+  }, [activePage]);
 
   useEffect(() => {
   if (activePage === "My Orders") {

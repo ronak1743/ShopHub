@@ -28,9 +28,11 @@ public class OrderService {
         for(Order order:orderList){
             OrderItem item=new OrderItem(order);
             Product p=productRepo.findProductById(order.getProductId());
-            item.setName(p.getName());
-            item.setImage(p.getImgUrl());
-            list.add(item);
+            if(p!=null) {
+                item.setName(p.getName());
+                item.setImage(p.getImgUrl());
+                list.add(item);
+            }
         }
         Collections.reverse(list);
         return list;
