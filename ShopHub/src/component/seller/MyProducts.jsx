@@ -11,7 +11,7 @@ function MyProducts({setActivePage}){
           const fetchData = async () => {
             try {
     
-              const res = await fetch("https://shophub-production-82e2.up.railway.app/myproduct", {
+              const res = await fetch("https://shophub-kmq7.onrender.com/myproduct", {
                 credentials: "include",
               });
               const data = await res.json();

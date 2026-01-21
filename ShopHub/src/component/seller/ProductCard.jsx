@@ -4,7 +4,7 @@ function ProductCard({ product, setChange, change }) {
 
   const deleteproduct = async (id) => {
 
-    await fetch(`https://shophub-production-82e2.up.railway.app/delete/product/${id}`, {
+    await fetch(`https://shophub-kmq7.onrender.com/delete/product/${id}`, {
       method: "DELETE",
       credentials: "include",
     });

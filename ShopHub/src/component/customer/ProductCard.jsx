@@ -4,7 +4,7 @@ function ProductCard({ product}) {
   const [quantity, setQuantity] = useState(1);
   
   const addOrder=async()=>{
-      await fetch("https://shophub-production-82e2.up.railway.app/addorder", {
+      await fetch("https://shophub-kmq7.onrender.com//addorder", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -15,7 +15,7 @@ function ProductCard({ product}) {
   const addToCart = async () => {
     
     try {
-      const response = await fetch("https://shophub-production-82e2.up.railway.app/addtocart", {
+      const response = await fetch("https://shophub-kmq7.onrender.com/addtocart", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include", 

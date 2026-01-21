@@ -16,7 +16,7 @@ function CustomerPage() {
   const [Orders, setOrders] = useState([]);
 
   const loardOrders = async () => {
-    await fetch("https://shophub-production-82e2.up.railway.app/getorders", {
+    await fetch("https://shophub-kmq7.onrender.com/getorders", {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -24,7 +24,7 @@ function CustomerPage() {
   }
   
   useEffect(() => {
-    fetch("https://shophub-production-82e2.up.railway.app/getproducts")
+    fetch("https://shophub-kmq7.onrender.com/getproducts")
       .then(res => res.json())
       .then(data => {
         setproduct(data);

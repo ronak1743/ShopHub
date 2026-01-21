@@ -14,7 +14,7 @@ function Dashboard() {
       const fetchData = async () => {
         try {
 
-          const res = await fetch("https://shophub-production-82e2.up.railway.app/seller/dash", {
+          const res = await fetch("https://shophub-kmq7.onrender.com/seller/dash", {
             credentials: "include",
           });
           const data = await res.json();

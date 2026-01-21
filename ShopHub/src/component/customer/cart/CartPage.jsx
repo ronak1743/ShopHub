@@ -3,13 +3,11 @@ import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 
 const CartPage = () => {
-  // MOVED: useState must be at the top level of the component, not inside fetchCart
   const [cartItems, setCartItems] = useState([]);
 
   const fetchCart=async ()=>{
-    // REMOVED: Initial state declaration from here
     const x=[];
-    await fetch("https://shophub-production-82e2.up.railway.app/getCart",{
+    await fetch("https://shophub-kmq7.onrender.com/getCart",{
       credentials: "include",
     })
     .then((res)=>res.json())
